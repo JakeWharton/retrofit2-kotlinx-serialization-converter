@@ -29,7 +29,7 @@ class KotlinSerializationConverterFactoryStringTest {
   data class User(val name: String)
 
   @Before fun setUp() {
-    val contentType = MediaType.parse("application/json")!!
+    val contentType = MediaType.parse("application/json; charset=utf-8")!!
     val json = JSON
     val retrofit = Retrofit.Builder()
         .baseUrl(server.url("/"))
@@ -47,6 +47,8 @@ class KotlinSerializationConverterFactoryStringTest {
   @Test fun serialize() {
     server.enqueue(MockResponse())
     service.serialize(User("Bob")).execute()
-    assertEquals("""{"name":"Bob"}""", server.takeRequest().body.readUtf8())
+    val request = server.takeRequest()
+    assertEquals("""{"name":"Bob"}""", request.body.readUtf8())
+    assertEquals("application/json; charset=utf-8", request.headers["Content-Type"])
   }
 }

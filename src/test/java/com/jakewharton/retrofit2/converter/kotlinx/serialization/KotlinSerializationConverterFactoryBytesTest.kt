@@ -35,7 +35,7 @@ class KotlinSerializationConverterFactoryBytesTest {
   data class User(@SerialId(1) val name: String)
 
   @Before fun setUp() {
-    val contentType = MediaType.parse("application/json")!!
+    val contentType = MediaType.parse("application/x-protobuf")!!
     val protobuf = ProtoBuf
     val retrofit = Retrofit.Builder()
         .baseUrl(server.url("/"))
@@ -53,6 +53,8 @@ class KotlinSerializationConverterFactoryBytesTest {
   @Test fun serialize() {
     server.enqueue(MockResponse())
     service.serialize(User("Bob")).execute()
-    assertEquals(bobBytes, server.takeRequest().body.readByteString())
+    val request = server.takeRequest()
+    assertEquals(bobBytes, request.body.readByteString())
+    assertEquals("application/x-protobuf", request.headers["Content-Type"])
   }
 }
