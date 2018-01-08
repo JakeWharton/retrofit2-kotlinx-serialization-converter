@@ -1,0 +1,35 @@
+buildscript {
+  repositories {
+    mavenCentral()
+    maven { url "https://kotlin.bintray.com/kotlinx" }
+  }
+  dependencies {
+    classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.10'
+    classpath "org.jetbrains.kotlinx:kotlinx-gradle-serialization-plugin:0.4"
+  }
+}
+
+apply plugin: 'java-library'
+apply plugin: 'org.jetbrains.kotlin.jvm'
+apply plugin: 'kotlinx-serialization'
+apply from: file('gradle/gradle-mvn-push.gradle')
+
+targetCompatibility = JavaVersion.VERSION_1_6
+sourceCompatibility = JavaVersion.VERSION_1_6
+
+repositories {
+  mavenCentral()
+  maven { url "https://kotlin.bintray.com/kotlinx" }
+}
+
+dependencies {
+  api 'com.squareup.retrofit2:retrofit:2.3.0'
+  implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.2.10'
+  api 'org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.4'
+
+  testImplementation 'junit:junit:4.12'
+  testImplementation 'com.squareup.okhttp3:mockwebserver:3.9.1'
+  testImplementation 'com.google.guava:guava:23.6-jre'
+  testImplementation 'com.google.truth:truth:0.37'
+  testImplementation 'org.jetbrains.kotlin:kotlin-reflect:1.2.10'
+}
