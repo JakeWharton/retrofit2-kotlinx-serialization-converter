@@ -1,3 +1,5 @@
+@file:JvmName("KotlinSerializationConverterFactory")
+
 package com.jakewharton.retrofit2.converter.kotlinx.serialization
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.Serializer.FromBytes
@@ -15,7 +17,7 @@ import java.lang.reflect.Type
 typealias Loader<T> = (KSerialLoader<Any>, T) -> Any
 typealias Saver<T> = (KSerialSaver<Any>, Any) -> T
 
-internal class KotlinSerializationConverterFactory(
+internal class Factory(
     private val contentType: MediaType,
     private val serializer: Serializer
 ): Converter.Factory() {
@@ -44,7 +46,7 @@ fun stringBased(
     loader: Loader<String>,
     saver: Saver<String>
 ): Converter.Factory {
-  return KotlinSerializationConverterFactory(contentType, FromString(loader, saver))
+  return Factory(contentType, FromString(loader, saver))
 }
 
 /**
@@ -59,5 +61,5 @@ fun bytesBased(
     loader: Loader<ByteArray>,
     saver: Saver<ByteArray>
 ): Converter.Factory {
-  return KotlinSerializationConverterFactory(contentType, FromBytes(loader, saver))
+  return Factory(contentType, FromBytes(loader, saver))
 }

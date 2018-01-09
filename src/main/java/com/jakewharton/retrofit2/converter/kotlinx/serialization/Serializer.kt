@@ -6,7 +6,8 @@ import okhttp3.MediaType
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 
-sealed internal class Serializer {
+@Suppress("UNCHECKED_CAST") // Widening T to Any
+internal sealed class Serializer {
   abstract fun <T> fromResponseBody(loader: KSerialLoader<T>, body: ResponseBody): T
   abstract fun <T> toRequestBody(contentType: MediaType, saver: KSerialSaver<T>, value: T): RequestBody
 
