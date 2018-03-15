@@ -4,7 +4,7 @@ import kotlinx.serialization.KSerialLoader
 import okhttp3.ResponseBody
 import retrofit2.Converter
 
-internal class KSerialLoaderConverter<T>(
+internal class KSerialLoaderConverter<T : Any>(
     private val loader: KSerialLoader<T>,
     private val serializer: Serializer
 ) : Converter<ResponseBody, T> {

@@ -2,8 +2,6 @@ package com.jakewharton.retrofit2.converter.kotlinx.serialization
 
 import kotlinx.serialization.SerialId
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JSON
-import kotlinx.serialization.protobuf.ProtoBuf
 import okhttp3.MediaType
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -36,10 +34,9 @@ class KotlinSerializationConverterFactoryBytesTest {
 
   @Before fun setUp() {
     val contentType = MediaType.parse("application/x-protobuf")!!
-    val protobuf = ProtoBuf
     val retrofit = Retrofit.Builder()
         .baseUrl(server.url("/"))
-        .addConverterFactory(bytesBased(contentType, protobuf::load, protobuf::dump))
+        .addConverterFactory(protoBufBased(contentType))
         .build()
     service = retrofit.create(Service::class.java)
   }

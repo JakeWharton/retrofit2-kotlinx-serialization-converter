@@ -5,7 +5,7 @@ import okhttp3.MediaType
 import okhttp3.RequestBody
 import retrofit2.Converter
 
-internal class KSerialSaverConverter<T>(
+internal class KSerialSaverConverter<T : Any>(
     private val contentType: MediaType,
     private val saver: KSerialSaver<T>,
     private val serializer: Serializer
