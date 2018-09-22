@@ -4,8 +4,8 @@ package com.jakewharton.retrofit2.converter.kotlinx.serialization
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.Serializer.FromBytes
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.Serializer.FromString
-import kotlinx.serialization.KSerialLoader
-import kotlinx.serialization.KSerialSaver
+import kotlinx.serialization.DeserializationStrategy
+import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.serializerByTypeToken
 import okhttp3.MediaType
 import okhttp3.RequestBody
@@ -14,8 +14,8 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import java.lang.reflect.Type
 
-typealias Loader<T> = (KSerialLoader<Any>, T) -> Any
-typealias Saver<T> = (KSerialSaver<Any>, Any) -> T
+typealias Loader<T> = (DeserializationStrategy<Any>, T) -> Any
+typealias Saver<T> = (SerializationStrategy<Any>, Any) -> T
 
 internal class Factory(
     private val contentType: MediaType,
