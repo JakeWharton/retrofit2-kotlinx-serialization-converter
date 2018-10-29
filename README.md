@@ -7,14 +7,13 @@ A Retrofit 2 `Converter.Factory` for [Kotlin serialization][1].
 Usage
 -----
 
-Add a converter factory when building your `Retrofit` instance using either the
-`stringBased` or `bytesBased` factory methods:
+Add a converter factory when building your `Retrofit` instance using the
+`serializationConverterFactory` factory method:
 ```kotlin
 val contentType = MediaType.parse("application/json")!!
-val json = JSON
 val retrofit = Retrofit.Builder()
     .baseUrl("https://example.com/")
-    .addConverterFactory(stringBased(contentType, json::parse, json::stringify))
+    .addConverterFactory(serializationConverterFactory(contentType, JSON))
     .build()
 ```
 
@@ -34,12 +33,12 @@ Download [the latest JAR][2] or grab via [Maven][3]:
 <dependency>
   <groupId>com.jakewharton.retrofit</groupId>
   <artifactId>retrofit2-kotlinx-serialization-converter</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
 </dependency>
 ```
 or [Gradle][3]:
 ```groovy
-compile 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.1.0'
+compile 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.2.0'
 ```
 
 Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].
