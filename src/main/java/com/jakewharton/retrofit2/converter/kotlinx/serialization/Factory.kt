@@ -4,8 +4,8 @@ package com.jakewharton.retrofit2.converter.kotlinx.serialization
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.Serializer.FromBytes
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.Serializer.FromString
-import kotlinx.serialization.DeserializationStrategy
-import kotlinx.serialization.SerializationStrategy
+import kotlinx.serialization.BinaryFormat
+import kotlinx.serialization.StringFormat
 import kotlinx.serialization.serializerByTypeToken
 import okhttp3.MediaType
 import okhttp3.RequestBody
@@ -14,9 +14,6 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import java.lang.reflect.Type
 
-typealias Loader<T> = (DeserializationStrategy<Any>, T) -> Any
-typealias Saver<T> = (SerializationStrategy<Any>, Any) -> T
-
 internal class Factory(
     private val contentType: MediaType,
     private val serializer: Serializer
@@ -24,13 +21,13 @@ internal class Factory(
   override fun responseBodyConverter(type: Type, annotations: Array<out Annotation>,
       retrofit: Retrofit): Converter<ResponseBody, *>? {
     val loader = serializerByTypeToken(type)
-    return KSerialLoaderConverter(loader, serializer)
+    return DeserializationStrategyConverter(loader, serializer)
   }
 
   override fun requestBodyConverter(type: Type, parameterAnnotations: Array<out Annotation>,
       methodAnnotations: Array<out Annotation>, retrofit: Retrofit): Converter<*, RequestBody>? {
     val saver = serializerByTypeToken(type)
-    return KSerialSaverConverter(contentType, saver, serializer)
+    return SerializationStrategyConverter(contentType, saver, serializer)
   }
 }
 
@@ -41,12 +38,12 @@ internal class Factory(
  * that it can handle all types. If you are mixing this with something else, you must add this
  * instance last to allow the other converters a chance to see their types.
  */
-fun stringBased(
+@JvmName("create")
+fun serializationConverterFactory(
     contentType: MediaType,
-    loader: Loader<String>,
-    saver: Saver<String>
+    format: StringFormat
 ): Converter.Factory {
-  return Factory(contentType, FromString(loader, saver))
+  return Factory(contentType, FromString(format))
 }
 
 /**
@@ -56,10 +53,10 @@ fun stringBased(
  * that it can handle all types. If you are mixing this with something else, you must add this
  * instance last to allow the other converters a chance to see their types.
  */
-fun bytesBased(
+@JvmName("create")
+fun serializationConverterFactory(
     contentType: MediaType,
-    loader: Loader<ByteArray>,
-    saver: Saver<ByteArray>
+    format: BinaryFormat
 ): Converter.Factory {
-  return Factory(contentType, FromBytes(loader, saver))
+  return Factory(contentType, FromBytes(format))
 }

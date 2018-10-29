@@ -30,10 +30,9 @@ class KotlinSerializationConverterFactoryStringTest {
 
   @Before fun setUp() {
     val contentType = MediaType.parse("application/json; charset=utf-8")!!
-    val json = JSON
     val retrofit = Retrofit.Builder()
         .baseUrl(server.url("/"))
-        .addConverterFactory(stringBased(contentType, json::parse, json::stringify))
+        .addConverterFactory(serializationConverterFactory(contentType, JSON))
         .build()
     service = retrofit.create(Service::class.java)
   }
