@@ -10,7 +10,7 @@ Usage
 Add a converter factory when building your `Retrofit` instance using the
 `serializationConverterFactory` factory method:
 ```kotlin
-val contentType = MediaType.parse("application/json")!!
+val contentType = MediaType.get("application/json")
 val retrofit = Retrofit.Builder()
     .baseUrl("https://example.com/")
     .addConverterFactory(serializationConverterFactory(contentType, JSON))
