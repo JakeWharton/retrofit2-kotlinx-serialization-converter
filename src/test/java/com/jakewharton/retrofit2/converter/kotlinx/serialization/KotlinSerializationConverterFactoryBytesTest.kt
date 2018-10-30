@@ -34,7 +34,7 @@ class KotlinSerializationConverterFactoryBytesTest {
   data class User(@SerialId(1) val name: String)
 
   @Before fun setUp() {
-    val contentType = MediaType.parse("application/x-protobuf")!!
+    val contentType = MediaType.get("application/x-protobuf")
     val retrofit = Retrofit.Builder()
         .baseUrl(server.url("/"))
         .addConverterFactory(serializationConverterFactory(contentType, ProtoBuf))
