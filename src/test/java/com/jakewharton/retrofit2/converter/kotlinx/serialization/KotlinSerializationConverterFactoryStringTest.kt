@@ -1,7 +1,7 @@
 package com.jakewharton.retrofit2.converter.kotlinx.serialization
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JSON
+import kotlinx.serialization.json.Json
 import okhttp3.MediaType
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -32,7 +32,7 @@ class KotlinSerializationConverterFactoryStringTest {
     val contentType = MediaType.get("application/json; charset=utf-8")
     val retrofit = Retrofit.Builder()
         .baseUrl(server.url("/"))
-        .addConverterFactory(serializationConverterFactory(contentType, JSON))
+        .addConverterFactory(serializationConverterFactory(contentType, Json))
         .build()
     service = retrofit.create(Service::class.java)
   }
