@@ -13,7 +13,7 @@ Add a converter factory when building your `Retrofit` instance using the
 val contentType = MediaType.get("application/json")
 val retrofit = Retrofit.Builder()
     .baseUrl("https://example.com/")
-    .addConverterFactory(serializationConverterFactory(contentType, JSON))
+    .addConverterFactory(serializationConverterFactory(contentType, Json))
     .build()
 ```
 
@@ -38,7 +38,7 @@ Download [the latest JAR][2] or grab via [Maven][3]:
 ```
 or [Gradle][3]:
 ```groovy
-compile 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.2.0'
+implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.2.0'
 ```
 
 Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].
