@@ -7,13 +7,14 @@ A Retrofit 2 `Converter.Factory` for [Kotlin serialization][1].
 Usage
 -----
 
-Add a converter factory when building your `Retrofit` instance using the
-`serializationConverterFactory` factory method:
+Add a converter factory when building your `Retrofit` instance using the `asConverterFactory`
+extension function:
+
 ```kotlin
 val contentType = MediaType.get("application/json")
 val retrofit = Retrofit.Builder()
     .baseUrl("https://example.com/")
-    .addConverterFactory(serializationConverterFactory(contentType, Json))
+    .addConverterFactory(Json.asConverterFactory(contentType))
     .build()
 ```
 

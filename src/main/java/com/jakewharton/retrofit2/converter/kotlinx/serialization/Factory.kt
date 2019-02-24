@@ -39,6 +39,12 @@ internal class Factory(
  * instance last to allow the other converters a chance to see their types.
  */
 @JvmName("create")
+fun StringFormat.asConverterFactory(contentType: MediaType): Converter.Factory {
+  return Factory(contentType, FromString(this))
+}
+
+@JvmName("create")
+@Deprecated("Argument order changed", ReplaceWith("format.asConverterFactory(contentType)"))
 fun serializationConverterFactory(
     contentType: MediaType,
     format: StringFormat
@@ -54,6 +60,12 @@ fun serializationConverterFactory(
  * instance last to allow the other converters a chance to see their types.
  */
 @JvmName("create")
+fun BinaryFormat.asConverterFactory(contentType: MediaType): Converter.Factory {
+  return Factory(contentType, FromBytes(this))
+}
+
+@JvmName("create")
+@Deprecated("Argument order changed", ReplaceWith("format.asConverterFactory(contentType)"))
 fun serializationConverterFactory(
     contentType: MediaType,
     format: BinaryFormat

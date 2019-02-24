@@ -15,7 +15,8 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 
-class KotlinSerializationConverterFactoryStringTest {
+@Suppress("DEPRECATION") // Explicitly testing deprecated functionality.
+class DeprecatedKotlinSerializationConverterFactoryStringTest {
   @get:Rule val server = MockWebServer()
 
   private lateinit var service: Service
@@ -32,7 +33,7 @@ class KotlinSerializationConverterFactoryStringTest {
     val contentType = MediaType.get("application/json; charset=utf-8")
     val retrofit = Retrofit.Builder()
         .baseUrl(server.url("/"))
-        .addConverterFactory(Json.asConverterFactory(contentType))
+        .addConverterFactory(serializationConverterFactory(contentType, Json))
         .build()
     service = retrofit.create(Service::class.java)
   }
