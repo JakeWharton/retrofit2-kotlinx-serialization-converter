@@ -34,12 +34,12 @@ Download [the latest JAR][2] or grab via [Maven][3]:
 <dependency>
   <groupId>com.jakewharton.retrofit</groupId>
   <artifactId>retrofit2-kotlinx-serialization-converter</artifactId>
-  <version>0.3.0</version>
+  <version>0.4.0</version>
 </dependency>
 ```
 or [Gradle][3]:
 ```groovy
-implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.3.0'
+implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.4.0'
 ```
 
 Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].
