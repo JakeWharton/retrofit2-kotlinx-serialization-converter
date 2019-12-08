@@ -11,7 +11,7 @@ Add a converter factory when building your `Retrofit` instance using the `asConv
 extension function:
 
 ```kotlin
-val contentType = MediaType.get("application/json")
+val contentType = "application/json".toMediaType()
 val retrofit = Retrofit.Builder()
     .baseUrl("https://example.com/")
     .addConverterFactory(Json.asConverterFactory(contentType))
