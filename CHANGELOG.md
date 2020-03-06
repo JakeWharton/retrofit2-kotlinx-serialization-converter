@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+Version 0.5.0 *(2020-03-06)*
+----------------------------
+
+ * Kotlin updated to 1.3.70
+ * Serialization updated to 0.20.0
+ * Retrofit updated to 2.6.4
+
+
 Version 0.4.0 *(2019-04-12)*
 ----------------------------
 
