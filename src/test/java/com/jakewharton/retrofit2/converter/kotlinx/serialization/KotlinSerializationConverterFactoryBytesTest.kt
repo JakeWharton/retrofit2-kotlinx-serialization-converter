@@ -1,6 +1,6 @@
 package com.jakewharton.retrofit2.converter.kotlinx.serialization
 
-import kotlinx.serialization.SerialId
+import kotlinx.serialization.protobuf.ProtoId
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoBuf
 import okhttp3.MediaType
@@ -31,7 +31,7 @@ class KotlinSerializationConverterFactoryBytesTest {
   }
 
   @Serializable
-  data class User(@SerialId(1) val name: String)
+  data class User(@ProtoId(1) val name: String)
 
   @Before fun setUp() {
     val contentType = MediaType.get("application/x-protobuf")
