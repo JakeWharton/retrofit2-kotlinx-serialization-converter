@@ -19,13 +19,13 @@ internal class Factory(
     private val serializer: Serializer
 ): Converter.Factory() {
   override fun responseBodyConverter(type: Type, annotations: Array<out Annotation>,
-      retrofit: Retrofit): Converter<ResponseBody, *>? {
+      retrofit: Retrofit?): Converter<ResponseBody, *>? {
     val loader = serializerByTypeToken(type)
     return DeserializationStrategyConverter(loader, serializer)
   }
 
   override fun requestBodyConverter(type: Type, parameterAnnotations: Array<out Annotation>,
-      methodAnnotations: Array<out Annotation>, retrofit: Retrofit): Converter<*, RequestBody>? {
+      methodAnnotations: Array<out Annotation>, retrofit: Retrofit?): Converter<*, RequestBody>? {
     val saver = serializerByTypeToken(type)
     return SerializationStrategyConverter(contentType, saver, serializer)
   }
