@@ -1,7 +1,7 @@
 buildscript {
   ext.versions = [
-    'kotlin': '1.3.70',
-    'serializationRuntime': '0.20.0',
+    'kotlin': '1.4.0',
+    'serializationRuntime': '1.0.0-RC',
     'retrofit': '2.6.4',
     'okhttp': '3.14.7',
     'junit': '4.13',
@@ -26,16 +26,30 @@ sourceCompatibility = JavaVersion.VERSION_1_6
 
 repositories {
   mavenCentral()
-  maven { url "https://kotlin.bintray.com/kotlinx" }
 }
 
 dependencies {
   api "com.squareup.retrofit2:retrofit:${versions.retrofit}"
-  api "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
-  api "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${versions.serializationRuntime}"
+  api "org.jetbrains.kotlinx:kotlinx-serialization-core:${versions.serializationRuntime}"
 
   testImplementation "junit:junit:${versions.junit}"
   testImplementation "com.squareup.okhttp3:mockwebserver:${versions.okhttp}"
   testImplementation "com.google.truth:truth:${versions.truth}"
   testImplementation "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:${versions.serializationRuntime}"
+}
+
+compileKotlin {
+  kotlinOptions {
+    freeCompilerArgs += [
+        '-Xopt-in=kotlin.RequiresOptIn'
+    ]
+  }
+}
+
+compileTestKotlin {
+  kotlinOptions {
+    freeCompilerArgs += [
+        '-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi',
+    ]
+  }
 }
