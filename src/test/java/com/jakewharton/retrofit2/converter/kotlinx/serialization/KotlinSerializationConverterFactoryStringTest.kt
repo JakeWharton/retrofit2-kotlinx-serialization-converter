@@ -7,6 +7,7 @@ import okhttp3.MediaType
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertThrows
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -15,6 +16,7 @@ import retrofit2.Retrofit
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import java.lang.IllegalArgumentException
 
 class KotlinSerializationConverterFactoryStringTest {
   @get:Rule val server = MockWebServer()
@@ -23,11 +25,15 @@ class KotlinSerializationConverterFactoryStringTest {
 
   interface Service {
     @GET("/") fun deserialize(): Call<User>
+    @GET("/") fun deserializeOther(): Call<NotSerializable>
     @POST("/") fun serialize(@Body user: User): Call<Void?>
+    @POST("/") fun serializeOther(@Body not: NotSerializable): Call<Void?>
   }
 
   @Serializable
   data class User(val name: String)
+
+  data class NotSerializable(val name: String)
 
   @UnstableDefault
   @Before fun setUp() {
@@ -51,5 +57,19 @@ class KotlinSerializationConverterFactoryStringTest {
     val request = server.takeRequest()
     assertEquals("""{"name":"Bob"}""", request.body.readUtf8())
     assertEquals("application/json; charset=utf-8", request.headers["Content-Type"])
+  }
+
+  @Test fun deserializeOther() {
+    server.enqueue(MockResponse().setBody("""{"name":"Bob"}"""))
+    assertThrows(IllegalArgumentException::class.java) {
+      val user = service.deserializeOther().execute().body()
+    }
+  }
+
+  @Test fun serializeOther() {
+    server.enqueue(MockResponse())
+    assertThrows(IllegalArgumentException::class.java) {
+      service.serializeOther(NotSerializable("Bob"))
+    }
   }
 }
