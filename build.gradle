@@ -1,8 +1,8 @@
 buildscript {
   ext.versions = [
-    'kotlin': '1.3.70',
-    'serializationRuntime': '0.20.0',
-    'retrofit': '2.6.4',
+    'kotlin': '1.4.0',
+    'serialization': '1.0.0-RC',
+    'retrofit': '2.9.0',
     'okhttp': '3.14.7',
     'junit': '4.13',
     'truth': '1.0',
@@ -32,10 +32,10 @@ repositories {
 dependencies {
   api "com.squareup.retrofit2:retrofit:${versions.retrofit}"
   api "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
-  api "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${versions.serializationRuntime}"
+  api "org.jetbrains.kotlinx:kotlinx-serialization-core:${versions.serialization}"
 
   testImplementation "junit:junit:${versions.junit}"
   testImplementation "com.squareup.okhttp3:mockwebserver:${versions.okhttp}"
   testImplementation "com.google.truth:truth:${versions.truth}"
-  testImplementation "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:${versions.serializationRuntime}"
+  testImplementation "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:${versions.serialization}"
 }

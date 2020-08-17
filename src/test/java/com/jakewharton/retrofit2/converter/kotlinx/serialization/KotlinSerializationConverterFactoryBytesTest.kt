@@ -1,8 +1,9 @@
 package com.jakewharton.retrofit2.converter.kotlinx.serialization
 
-import kotlinx.serialization.protobuf.ProtoId
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoBuf
+import kotlinx.serialization.protobuf.ProtoNumber
 import okhttp3.MediaType
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -20,6 +21,7 @@ import retrofit2.http.POST
 
 private val bobBytes = ByteString.of(0x0a, 0x03, 'B'.toByte(), 'o'.toByte(), 'b'.toByte())
 
+@ExperimentalSerializationApi
 class KotlinSerializationConverterFactoryBytesTest {
   @get:Rule val server = MockWebServer()
 
@@ -31,7 +33,7 @@ class KotlinSerializationConverterFactoryBytesTest {
   }
 
   @Serializable
-  data class User(@ProtoId(1) val name: String)
+  data class User(@ProtoNumber(1) val name: String)
 
   @Before fun setUp() {
     val contentType = MediaType.get("application/x-protobuf")

@@ -1,7 +1,7 @@
 package com.jakewharton.retrofit2.converter.kotlinx.serialization
 
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.UnstableDefault
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType
 import okhttp3.mockwebserver.MockResponse
@@ -29,7 +29,7 @@ class KotlinSerializationConverterFactoryStringTest {
   @Serializable
   data class User(val name: String)
 
-  @UnstableDefault
+  @ExperimentalSerializationApi
   @Before fun setUp() {
     val contentType = MediaType.get("application/json; charset=utf-8")
     val retrofit = Retrofit.Builder()
