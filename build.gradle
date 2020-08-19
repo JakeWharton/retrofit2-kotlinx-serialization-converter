@@ -38,10 +38,11 @@ dependencies {
   testImplementation "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:${versions.serializationRuntime}"
 }
 
-compileKotlin {
-  kotlinOptions {
+tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile).configureEach { task ->
+  task.kotlinOptions {
     freeCompilerArgs += [
-        '-Xopt-in=kotlin.RequiresOptIn'
+        '-Xopt-in=kotlin.RequiresOptIn',
+        '-Xjsr305=strict',
     ]
   }
 }
