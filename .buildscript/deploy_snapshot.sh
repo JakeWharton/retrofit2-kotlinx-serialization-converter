@@ -7,7 +7,7 @@
 
 SLUG="JakeWharton/retrofit2-kotlinx-serialization-converter"
 JDK="openjdk8"
-BRANCH="master"
+BRANCH="trunk"
 
 set -e
 
