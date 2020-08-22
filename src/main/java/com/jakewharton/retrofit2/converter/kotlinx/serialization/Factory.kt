@@ -7,7 +7,6 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.Serializer.From
 import kotlinx.serialization.BinaryFormat
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.StringFormat
-import kotlinx.serialization.serializer
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -22,13 +21,13 @@ internal class Factory(
 ): Converter.Factory() {
   override fun responseBodyConverter(type: Type, annotations: Array<out Annotation>,
       retrofit: Retrofit): Converter<ResponseBody, *>? {
-    val loader = serializer(type)
+    val loader = serializer.serializer(type)
     return DeserializationStrategyConverter(loader, serializer)
   }
 
   override fun requestBodyConverter(type: Type, parameterAnnotations: Array<out Annotation>,
       methodAnnotations: Array<out Annotation>, retrofit: Retrofit): Converter<*, RequestBody>? {
-    val saver = serializer(type)
+    val saver = serializer.serializer(type)
     return SerializationStrategyConverter(contentType, saver, serializer)
   }
 }
