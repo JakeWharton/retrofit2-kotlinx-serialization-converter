@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+Version 0.7.0 *(2020-08-31)*
+----------------------------
+
+ * New: Add support for contextual serializers which are registered with the supplied format.
+   No new API or action is required for this to work–it's all implementation detail. Since it's
+   a potentially incompatible behavior change, the version was bumped.
+
+
 Version 0.6.0 *(2020-08-19)*
 ----------------------------
 
