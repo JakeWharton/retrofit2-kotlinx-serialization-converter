@@ -1,5 +1,6 @@
 package com.jakewharton.retrofit2.converter.kotlinx.serialization
 
+import java.lang.reflect.Type
 import kotlinx.serialization.BinaryFormat
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -11,7 +12,6 @@ import kotlinx.serialization.serializer
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
-import java.lang.reflect.Type
 
 @OptIn(ExperimentalSerializationApi::class)
 internal sealed class Serializer {
@@ -20,7 +20,6 @@ internal sealed class Serializer {
   protected abstract val format: SerialFormat
 
   fun serializer(type: Type): KSerializer<Any> = format.serializersModule.serializer(type)
-
 
   @OptIn(ExperimentalSerializationApi::class) // Experimental is only for subtypes.
   class FromString(override val format: StringFormat) : Serializer() {
@@ -36,7 +35,7 @@ internal sealed class Serializer {
   }
 
   @OptIn(ExperimentalSerializationApi::class) // Experimental is only for subtypes.
-  class FromBytes(override val format: BinaryFormat): Serializer() {
+  class FromBytes(override val format: BinaryFormat) : Serializer() {
     override fun <T> fromResponseBody(loader: DeserializationStrategy<T>, body: ResponseBody): T {
       val bytes = body.bytes()
       return format.decodeFromByteArray(loader, bytes)

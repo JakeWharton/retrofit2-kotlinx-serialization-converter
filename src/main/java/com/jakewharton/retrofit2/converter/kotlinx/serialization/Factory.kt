@@ -4,6 +4,7 @@ package com.jakewharton.retrofit2.converter.kotlinx.serialization
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.Serializer.FromBytes
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.Serializer.FromString
+import java.lang.reflect.Type
 import kotlinx.serialization.BinaryFormat
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.StringFormat
@@ -12,21 +13,27 @@ import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import retrofit2.Retrofit
-import java.lang.reflect.Type
 
 @ExperimentalSerializationApi
 internal class Factory(
-    private val contentType: MediaType,
-    private val serializer: Serializer
-): Converter.Factory() {
-  override fun responseBodyConverter(type: Type, annotations: Array<out Annotation>,
-      retrofit: Retrofit): Converter<ResponseBody, *>? {
+  private val contentType: MediaType,
+  private val serializer: Serializer
+) : Converter.Factory() {
+  override fun responseBodyConverter(
+    type: Type,
+    annotations: Array<out Annotation>,
+    retrofit: Retrofit
+  ): Converter<ResponseBody, *>? {
     val loader = serializer.serializer(type)
     return DeserializationStrategyConverter(loader, serializer)
   }
 
-  override fun requestBodyConverter(type: Type, parameterAnnotations: Array<out Annotation>,
-      methodAnnotations: Array<out Annotation>, retrofit: Retrofit): Converter<*, RequestBody>? {
+  override fun requestBodyConverter(
+    type: Type,
+    parameterAnnotations: Array<out Annotation>,
+    methodAnnotations: Array<out Annotation>,
+    retrofit: Retrofit
+  ): Converter<*, RequestBody>? {
     val saver = serializer.serializer(type)
     return SerializationStrategyConverter(contentType, saver, serializer)
   }
