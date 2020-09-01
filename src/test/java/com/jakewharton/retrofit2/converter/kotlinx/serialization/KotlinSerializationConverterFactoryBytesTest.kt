@@ -36,9 +36,9 @@ class KotlinSerializationConverterFactoryBytesTest {
   @Before fun setUp() {
     val contentType = MediaType.get("application/x-protobuf")
     val retrofit = Retrofit.Builder()
-        .baseUrl(server.url("/"))
-        .addConverterFactory(ProtoBuf.asConverterFactory(contentType))
-        .build()
+      .baseUrl(server.url("/"))
+      .addConverterFactory(ProtoBuf.asConverterFactory(contentType))
+      .build()
     service = retrofit.create(Service::class.java)
   }
 
