@@ -13,12 +13,14 @@ import okhttp3.MediaType
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 
-@OptIn(ExperimentalSerializationApi::class)
 internal sealed class Serializer {
   abstract fun <T> fromResponseBody(loader: DeserializationStrategy<T>, body: ResponseBody): T
   abstract fun <T> toRequestBody(contentType: MediaType, saver: SerializationStrategy<T>, value: T): RequestBody
+
+  @OptIn(ExperimentalSerializationApi::class) // Experimental is only for subtypes.
   protected abstract val format: SerialFormat
 
+  @ExperimentalSerializationApi // serializer(Type) is not stable.
   fun serializer(type: Type): KSerializer<Any> = format.serializersModule.serializer(type)
 
   @OptIn(ExperimentalSerializationApi::class) // Experimental is only for subtypes.
