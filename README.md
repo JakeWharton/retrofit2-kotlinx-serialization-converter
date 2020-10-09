@@ -31,7 +31,7 @@ Download
 
 Download [the latest JAR][2] or grab via [Gradle][3]:
 ```kotlin
-implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.7.0")
+implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
 ```
 
 or [Maven][3]:
@@ -39,7 +39,7 @@ or [Maven][3]:
 <dependency>
   <groupId>com.jakewharton.retrofit</groupId>
   <artifactId>retrofit2-kotlinx-serialization-converter</artifactId>
-  <version>0.7.0</version>
+  <version>0.8.0</version>
 </dependency>
 ```
 

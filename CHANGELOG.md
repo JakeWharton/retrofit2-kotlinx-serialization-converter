@@ -1,6 +1,18 @@
 Change Log
 ==========
 
+Version 0.8.0 *(2020-10-09)*
+----------------------------
+
+ * Kotlin updated to 1.4.10
+ * Serialization updated to 1.0.0
+
+   Note that the APIs used by this converter are marked as experimental. As such, the experimental
+   annotation has been propagated to the public API such that you will need to opt-in to using it
+   or receive a warning. It is also why this library is not a 1.0.0 since those APIs may have
+   backwards-incompatible changes in the future requiring an update.
+
+
 Version 0.7.0 *(2020-08-31)*
 ----------------------------
 

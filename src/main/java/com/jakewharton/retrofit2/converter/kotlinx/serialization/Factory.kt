@@ -19,6 +19,7 @@ internal class Factory(
   private val contentType: MediaType,
   private val serializer: Serializer
 ) : Converter.Factory() {
+  @Suppress("RedundantNullableReturnType") // Retaining interface contract.
   override fun responseBodyConverter(
     type: Type,
     annotations: Array<out Annotation>,
@@ -28,6 +29,7 @@ internal class Factory(
     return DeserializationStrategyConverter(loader, serializer)
   }
 
+  @Suppress("RedundantNullableReturnType") // Retaining interface contract.
   override fun requestBodyConverter(
     type: Type,
     parameterAnnotations: Array<out Annotation>,
