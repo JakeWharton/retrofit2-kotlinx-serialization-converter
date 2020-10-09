@@ -1,11 +1,11 @@
 buildscript {
   ext.versions = [
-    'kotlin': '1.4.0',
-    'serializationRuntime': '1.0.0-RC',
+    'kotlin': '1.4.10',
+    'serializationRuntime': '1.0.0',
     'retrofit': '2.6.4',
     'okhttp': '3.14.7',
     'junit': '4.13',
-    'truth': '1.0',
+    'truth': '1.0.1',
   ]
   repositories {
     mavenCentral()
@@ -13,13 +13,13 @@ buildscript {
   dependencies {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
     classpath "org.jetbrains.kotlin:kotlin-serialization:${versions.kotlin}"
-    classpath 'com.diffplug.spotless:spotless-plugin-gradle:5.1.0'
+    classpath 'com.diffplug.spotless:spotless-plugin-gradle:5.6.1'
   }
 }
 
 apply plugin: 'java-library'
 apply plugin: 'org.jetbrains.kotlin.jvm'
-apply plugin: 'kotlinx-serialization'
+apply plugin: 'org.jetbrains.kotlin.plugin.serialization'
 apply from: file('gradle/gradle-mvn-push.gradle')
 
 targetCompatibility = JavaVersion.VERSION_1_6
@@ -37,6 +37,7 @@ dependencies {
   testImplementation "com.squareup.okhttp3:mockwebserver:${versions.okhttp}"
   testImplementation "com.google.truth:truth:${versions.truth}"
   testImplementation "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:${versions.serializationRuntime}"
+  testImplementation "org.jetbrains.kotlinx:kotlinx-serialization-json:${versions.serializationRuntime}"
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile).configureEach { task ->
@@ -59,7 +60,7 @@ compileTestKotlin {
 apply plugin: 'com.diffplug.spotless'
 spotless {
   kotlin {
-    ktlint('0.37.2').userData([
+    ktlint('0.39.0').userData([
         // TODO this should all come from editorconfig https://github.com/diffplug/spotless/issues/142
         'indent_size': '2',
         'kotlin_imports_layout': 'ascii',
