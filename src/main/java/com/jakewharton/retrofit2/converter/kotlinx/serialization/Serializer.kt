@@ -8,6 +8,7 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerialFormat
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.StringFormat
+import kotlinx.serialization.json.decodeFromStream
 import kotlinx.serialization.serializer
 import okhttp3.MediaType
 import okhttp3.RequestBody
@@ -26,8 +27,8 @@ internal sealed class Serializer {
   @OptIn(ExperimentalSerializationApi::class) // Experimental is only for subtypes.
   class FromString(override val format: StringFormat) : Serializer() {
     override fun <T> fromResponseBody(loader: DeserializationStrategy<T>, body: ResponseBody): T {
-      val string = body.string()
-      return format.decodeFromString(loader, string)
+      val stream = body.byteStream()
+      return format.decodeFromStream(loader, stream)
     }
 
     override fun <T> toRequestBody(contentType: MediaType, saver: SerializationStrategy<T>, value: T): RequestBody {
