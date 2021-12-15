@@ -67,6 +67,6 @@ License
 
 
  [1]: https://github.com/Kotlin/kotlinx.serialization/
- [2]: https://search.maven.org/remote_content?g=com.squareup.retrofit2&a=adapter-kotlin-coroutines-experimental&v=LATEST
+ [2]: https://search.maven.org/artifact/com.jakewharton.retrofit/retrofit2-kotlinx-serialization-converter
  [3]: http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.squareup.retrofit2%22%20a%3A%22adapter-kotlin-coroutines-experimental%22
  [snap]: https://oss.sonatype.org/content/repositories/snapshots/
