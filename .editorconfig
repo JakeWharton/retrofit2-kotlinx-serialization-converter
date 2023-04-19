@@ -1,11 +1,20 @@
 root = true
 
 [*]
-indent_size = 2
-end_of_line = lf
-charset = utf-8
-trim_trailing_whitespace = true
-insert_final_newline = true
+end_of_line=lf
+charset=utf-8
+indent_style = tab
+indent_size=2
+insert_final_newline=true
+trim_trailing_whitespace=true
 
 [*.{kt,kts}]
-kotlin_imports_layout=ascii
+ij_kotlin_allow_trailing_comma=true
+ij_kotlin_allow_trailing_comma_on_call_site=true
+ij_kotlin_imports_layout=*
+
+[*.yaml]
+indent_style = space
+
+[*.md]
+indent_style = space
