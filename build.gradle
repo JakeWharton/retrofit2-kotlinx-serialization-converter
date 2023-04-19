@@ -1,7 +1,7 @@
 buildscript {
   ext.versions = [
-    'kotlin': '1.4.10',
-    'serialization': '1.0.0',
+    'kotlin': '1.8.10',
+    'serialization': '1.5.0',
     'retrofit': '2.6.4',
     'okhttp': '3.14.7',
     'junit': '4.13',
@@ -14,16 +14,17 @@ buildscript {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
     classpath "org.jetbrains.kotlin:kotlin-serialization:${versions.kotlin}"
     classpath 'com.diffplug.spotless:spotless-plugin-gradle:5.6.1'
+    classpath 'com.vanniktech:gradle-maven-publish-plugin:0.25.2'
   }
 }
 
 apply plugin: 'java-library'
 apply plugin: 'org.jetbrains.kotlin.jvm'
 apply plugin: 'org.jetbrains.kotlin.plugin.serialization'
-apply from: file('gradle/gradle-mvn-push.gradle')
+apply plugin: 'com.vanniktech.maven.publish'
 
-targetCompatibility = JavaVersion.VERSION_1_6
-sourceCompatibility = JavaVersion.VERSION_1_6
+targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
   mavenCentral()
@@ -43,16 +44,7 @@ dependencies {
 tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile).configureEach { task ->
   task.kotlinOptions {
     freeCompilerArgs += [
-        '-Xopt-in=kotlin.RequiresOptIn',
         '-Xjsr305=strict',
-    ]
-  }
-}
-
-compileTestKotlin {
-  kotlinOptions {
-    freeCompilerArgs += [
-        '-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi',
     ]
   }
 }
