@@ -9,7 +9,7 @@ import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
-import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Assert.assertEquals
@@ -58,7 +58,7 @@ class KotlinxSerializationConverterFactoryContextualTest {
     val module = SerializersModule {
       contextual(UserSerializer)
     }
-    val contentType = MediaType.get("application/json; charset=utf-8")
+    val contentType = "application/json; charset=utf-8".toMediaType()
     val retrofit = Retrofit.Builder()
       .baseUrl(server.url("/"))
       .addConverterFactory(Json { serializersModule = module }.asConverterFactory(contentType))
