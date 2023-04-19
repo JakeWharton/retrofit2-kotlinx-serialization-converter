@@ -1,11 +1,9 @@
-Kotlin Serialization Converter
-==============================
+# Kotlin Serialization Converter
 
-A Retrofit 2 `Converter.Factory` for [Kotlin serialization][1].
+A Retrofit 2 `Converter.Factory` for [Kotlin serialization](https://github.com/Kotlin/kotlinx.serialization/).
 
 
-Usage
------
+## Usage
 
 Add a converter factory when building your `Retrofit` instance using the `asConverterFactory`
 extension function:
@@ -26,15 +24,14 @@ that they can handle all types. If you are mixing this converter with another, y
 instance _last_ to allow the other converters a chance to see their types.
 
 
-Download
---------
+## Download
 
-Download [the latest JAR][2] or grab via [Gradle][3]:
+Gradle:
 ```kotlin
 implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
 ```
 
-or [Maven][3]:
+Maven:
 ```xml
 <dependency>
   <groupId>com.jakewharton.retrofit</groupId>
@@ -43,11 +40,11 @@ or [Maven][3]:
 </dependency>
 ```
 
-Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].
+Snapshots of the development version are available in
+[Sonatype's `snapshots` repository](https://oss.sonatype.org/content/repositories/snapshots/).
 
 
-License
-=======
+# License
 
     Copyright 2018 Jake Wharton
 
@@ -62,11 +59,3 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
-
-
-
- [1]: https://github.com/Kotlin/kotlinx.serialization/
- [2]: https://search.maven.org/remote_content?g=com.squareup.retrofit2&a=adapter-kotlin-coroutines-experimental&v=LATEST
- [3]: http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.squareup.retrofit2%22%20a%3A%22adapter-kotlin-coroutines-experimental%22
- [snap]: https://oss.sonatype.org/content/repositories/snapshots/
