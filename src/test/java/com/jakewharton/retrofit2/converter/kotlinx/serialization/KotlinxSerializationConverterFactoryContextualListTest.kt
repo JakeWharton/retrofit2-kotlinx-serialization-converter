@@ -53,15 +53,18 @@ class KotlinxSerializationConverterFactoryContextualListTest {
     private data class UserResponse(val name: String)
   }
 
-  @Before
-  fun setUp() {
-    val module = SerializersModule {
+  private val json = Json {
+    serializersModule = SerializersModule {
       contextual(UserSerializer)
     }
+  }
+
+  @Before
+  fun setUp() {
     val contentType = "application/json; charset=utf-8".toMediaType()
     val retrofit = Retrofit.Builder()
       .baseUrl(server.url("/"))
-      .addConverterFactory(Json { serializersModule = module }.asConverterFactory(contentType))
+      .addConverterFactory(json.asConverterFactory(contentType))
       .build()
     service = retrofit.create(Service::class.java)
   }

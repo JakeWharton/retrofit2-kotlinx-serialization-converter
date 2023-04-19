@@ -1,5 +1,6 @@
 package com.jakewharton.retrofit2.converter.kotlinx.serialization
 
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoBuf
 import kotlinx.serialization.protobuf.ProtoNumber
@@ -18,8 +19,9 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 
-private val bobBytes = ByteString.of(0x0a, 0x03, 'B'.toByte(), 'o'.toByte(), 'b'.toByte())
+private val bobBytes = ByteString.of(0x0a, 0x03, 'B'.code.toByte(), 'o'.code.toByte(), 'b'.code.toByte())
 
+@ExperimentalSerializationApi
 class KotlinSerializationConverterFactoryBytesTest {
   @get:Rule val server = MockWebServer()
 
