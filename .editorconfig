@@ -3,7 +3,6 @@ root = true
 [*]
 end_of_line=lf
 charset=utf-8
-indent_style = tab
 indent_size=2
 insert_final_newline=true
 trim_trailing_whitespace=true
@@ -12,9 +11,3 @@ trim_trailing_whitespace=true
 ij_kotlin_allow_trailing_comma=true
 ij_kotlin_allow_trailing_comma_on_call_site=true
 ij_kotlin_imports_layout=*
-
-[*.yaml]
-indent_style = space
-
-[*.md]
-indent_style = space
