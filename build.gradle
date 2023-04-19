@@ -37,10 +37,11 @@ dependencies {
   testImplementation "org.jetbrains.kotlinx:kotlinx-serialization-json:${versions.serialization}"
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.dsl.KotlinCompile).configureEach { task ->
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile).configureEach { task ->
   task.kotlinOptions {
+    jvmTarget = '1.8'
     freeCompilerArgs += [
-        '-Xjsr305=strict',
+      '-Xjsr305=strict',
     ]
   }
 }
