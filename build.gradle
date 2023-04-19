@@ -2,10 +2,6 @@ buildscript {
   ext.versions = [
     'kotlin': '1.8.10',
     'serialization': '1.5.0',
-    'retrofit': '2.6.4',
-    'okhttp': '3.14.7',
-    'junit': '4.13',
-    'truth': '1.0.1',
   ]
   repositories {
     mavenCentral()
@@ -31,12 +27,12 @@ repositories {
 }
 
 dependencies {
-  api "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+  api "com.squareup.retrofit2:retrofit:2.6.4"
   api "org.jetbrains.kotlinx:kotlinx-serialization-core:${versions.serialization}"
 
-  testImplementation "junit:junit:${versions.junit}"
-  testImplementation "com.squareup.okhttp3:mockwebserver:${versions.okhttp}"
-  testImplementation "com.google.truth:truth:${versions.truth}"
+  testImplementation "junit:junit:4.13"
+  testImplementation "com.squareup.okhttp3:mockwebserver:3.14.7"
+  testImplementation "com.google.truth:truth:1.0.1"
   testImplementation "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:${versions.serialization}"
   testImplementation "org.jetbrains.kotlinx:kotlinx-serialization-json:${versions.serialization}"
 }
