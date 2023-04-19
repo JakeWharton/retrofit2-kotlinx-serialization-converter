@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+Version 1.0.0 *(2023-04-18)*
+----------------------------
+
+* Kotlin updated to 1.8.10
+* Serialization updated to 1.5.0
+* Experimental annotation is no longer required!
+
+
 Version 0.8.0 *(2020-10-09)*
 ----------------------------
 

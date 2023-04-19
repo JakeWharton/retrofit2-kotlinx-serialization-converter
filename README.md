@@ -28,7 +28,7 @@ instance _last_ to allow the other converters a chance to see their types.
 
 Gradle:
 ```kotlin
-implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
+implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
 ```
 
 Maven:
@@ -36,7 +36,7 @@ Maven:
 <dependency>
   <groupId>com.jakewharton.retrofit</groupId>
   <artifactId>retrofit2-kotlinx-serialization-converter</artifactId>
-  <version>0.8.0</version>
+  <version>1.0.0</version>
 </dependency>
 ```
 
