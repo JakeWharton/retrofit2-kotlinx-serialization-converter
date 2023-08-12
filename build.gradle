@@ -1,7 +1,10 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
+
 buildscript {
   ext.versions = [
-    'kotlin': '1.8.10',
-    'serialization': '1.5.0',
+    'kotlin': '1.9.0',
+    'serialization': '1.5.1',
   ]
   repositories {
     mavenCentral()
@@ -37,12 +40,12 @@ dependencies {
   testImplementation "org.jetbrains.kotlinx:kotlinx-serialization-json:${versions.serialization}"
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile).configureEach { task ->
-  task.kotlinOptions {
-    jvmTarget = '1.8'
-    freeCompilerArgs += [
+tasks.withType(KotlinJvmCompile).configureEach { task ->
+  task.compilerOptions {
+    jvmTarget = JvmTarget.JVM_1_8
+    freeCompilerArgs.add(
       '-Xjsr305=strict',
-    ]
+    )
   }
 }
 
