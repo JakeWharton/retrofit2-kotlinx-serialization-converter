@@ -10,5 +10,5 @@ internal class SerializationStrategyConverter<T>(
   private val saver: SerializationStrategy<T>,
   private val serializer: Serializer
 ) : Converter<T, RequestBody> {
-  override fun convert(value: T) = serializer.toRequestBody(contentType, saver, value)
+  override fun convert(value: T & Any) = serializer.toRequestBody(contentType, saver, value)
 }
