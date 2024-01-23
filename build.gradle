@@ -12,7 +12,7 @@ buildscript {
   dependencies {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
     classpath "org.jetbrains.kotlin:kotlin-serialization:${versions.kotlin}"
-    classpath 'com.diffplug.spotless:spotless-plugin-gradle:6.24.0'
+    classpath 'com.diffplug.spotless:spotless-plugin-gradle:6.25.0'
     classpath 'com.vanniktech:gradle-maven-publish-plugin:0.27.0'
   }
 }
