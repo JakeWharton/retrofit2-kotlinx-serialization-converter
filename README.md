@@ -2,6 +2,8 @@
 
 A Retrofit 2 `Converter.Factory` for [Kotlin serialization](https://github.com/Kotlin/kotlinx.serialization/).
 
+**DEPRECATED** This has moved into Retrofit as a first-party converter. See [here](https://github.com/square/retrofit/tree/trunk/retrofit-converters/kotlinx-serialization) for info.
+
 
 ## Usage
 
